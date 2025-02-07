@@ -1,5 +1,6 @@
 package com.example.tap2025;
 
+import com.example.tap2025.vistas.Calculadora;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -22,15 +23,17 @@ public class HelloApplication extends Application {
 
     void CrearUI(){
         mitCalculadora = new MenuItem("Calculadora");
+        mitCalculadora.setOnAction(event -> new Calculadora());
         menCompentencia1 = new Menu("Competencia 1");
         menCompentencia1.getItems().addAll(mitCalculadora);
         mnbPrincipal = new MenuBar();
         mnbPrincipal.getMenus().addAll(menCompentencia1);
+        vBox = new VBox(mnbPrincipal);
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        vBox = new VBox();
+        CrearUI();
         stage.setTitle("Hola Mundo de Eventos :)");
         stage.setScene(new Scene(vBox));
         stage.show();

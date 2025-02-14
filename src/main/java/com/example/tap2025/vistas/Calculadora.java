@@ -28,6 +28,7 @@ public class Calculadora extends Stage {
         vBox.setSpacing(10);
         vBox.setPadding(new Insets(10));
         escena = new Scene(vBox,200,200);
+        escena.getStylesheets().add(getClass().getResource("/styles/calcu.css").toString());
     }
 
     public void CrearKeyboard(){
@@ -39,6 +40,10 @@ public class Calculadora extends Stage {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 arBtnTeclado[i][j] = new Button(strTeclas[pos]);
+                if( strTeclas[pos].equals("*") ) {
+                    arBtnTeclado[i][j].setId("fontButton");
+                    arBtnTeclado[i][j].setStyle("-fx-background-color: rgba(31,107,45,0.72);");
+                }
                 int finalPos = pos;
                 arBtnTeclado[i][j].setOnAction(event -> EventoTeclado(strTeclas[finalPos]));
                 arBtnTeclado[i][j].setPrefSize(50,50);

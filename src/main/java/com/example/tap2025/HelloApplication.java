@@ -1,5 +1,6 @@
 package com.example.tap2025;
 
+import com.example.tap2025.modelos.Conexion;
 import com.example.tap2025.vistas.Calculadora;
 import com.example.tap2025.vistas.VentasRestaurante;
 import javafx.application.Application;
@@ -38,6 +39,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Conexion.createConnection();
         CrearUI();
         stage.setTitle("Hola Mundo de Eventos :)");
         stage.setScene(escena);

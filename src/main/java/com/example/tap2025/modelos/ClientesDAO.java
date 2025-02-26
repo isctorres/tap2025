@@ -1,5 +1,11 @@
 package com.example.tap2025.modelos;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+
 public class ClientesDAO {
 
     private int idCte;
@@ -51,9 +57,54 @@ public class ClientesDAO {
     public void INSERT(){
         String query = "INSERT INTO clientes(nomCte,telCte,direccion,emailCte) " +
                 "values('"+nomCte+"','"+telCte+"','"+direccion+"','"+emailCte+"')";
+        try{
+            Statement stmt = Conexion.connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
-    public void UPDATE(){}
-    public void DELETE(){}
-    public void SELECT(){}
+    public void UPDATE(){
+        String query = "UPDATE clientes SET nomCte = '"+nomCte+"'," +
+                "telCte = '"+telCte+"',direccion = '"+direccion+"'," +
+                "emailCte = '"+emailCte+"' WHERE idCte = "+idCte;
+        try {
+            Statement stmt = Conexion.connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+    }
+    public void DELETE(){
+        String query = "DELETE FROM clientes WHERE idCte = "+idCte;
+        try{
+            Statement stmt = Conexion.connection.createStatement();
+            stmt.executeUpdate(query);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+    public ObservableList<ClientesDAO> SELECT(){
+        String query = "SELECT * FROM clientes";
+        ObservableList<ClientesDAO> listaC = FXCollections.observableArrayList();
+        ClientesDAO objC;
+        try {
+            Statement stmt = Conexion.connection.createStatement();
+            ResultSet res = stmt.executeQuery(query);
+            while(res.next()){
+                objC = new ClientesDAO();
+                objC.setIdCte(res.getInt("idCte"));
+                objC.setNomCte(res.getString("nomCte"));
+                objC.setDireccion(res.getString("direccion"));
+                objC.setTelCte(res.getString("telCte"));
+                objC.setEmailCte(res.getString("emailCte"));
+                listaC.add(objC);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listaC;
+    }
 
 }

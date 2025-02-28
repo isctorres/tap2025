@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToolBar;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -40,9 +41,13 @@ public class ListaClientes extends Stage {
     private void CreateTable() {
 
         TableColumn<ClientesDAO,String> tbcNomCte = new TableColumn<>("Nombre");
+        tbcNomCte.setCellValueFactory(new PropertyValueFactory<>("nomCte"));
         TableColumn<ClientesDAO,String> tbcDireccion = new TableColumn<>("Dirección");
+        tbcDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
         TableColumn<ClientesDAO,String> tbcTel = new TableColumn<>("Telefono");
+        tbcTel.setCellValueFactory(new PropertyValueFactory<>("telCte"));
         TableColumn<ClientesDAO,String> tbcEmail = new TableColumn<>("Email");
+        tbcEmail.setCellValueFactory(new PropertyValueFactory<>("emailCte"));
 
     }
 }

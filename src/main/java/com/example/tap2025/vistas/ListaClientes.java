@@ -3,6 +3,7 @@ package com.example.tap2025.vistas;
 import com.example.tap2025.modelos.ClientesDAO;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToolBar;
 import javafx.scene.image.ImageView;
@@ -31,7 +32,17 @@ public class ListaClientes extends Stage {
         btnAgregar.setGraphic(imv);
         tlbMenu = new ToolBar(btnAgregar);
         tbvClientes = new TableView<>();
+        CreateTable();
         vBox = new VBox(tlbMenu,tbvClientes);
         escena = new Scene(vBox, 800, 600);
+    }
+
+    private void CreateTable() {
+
+        TableColumn<ClientesDAO,String> tbcNomCte = new TableColumn<>("Nombre");
+        TableColumn<ClientesDAO,String> tbcDireccion = new TableColumn<>("Dirección");
+        TableColumn<ClientesDAO,String> tbcTel = new TableColumn<>("Telefono");
+        TableColumn<ClientesDAO,String> tbcEmail = new TableColumn<>("Email");
+
     }
 }

@@ -26,20 +26,21 @@ public class ListaClientes extends Stage {
     }
 
     private void CrearUI() {
+        tbvClientes = new TableView<>();
         btnAgregar = new Button();
+        btnAgregar.setOnAction(event -> new Cliente(tbvClientes));
         ImageView imv = new ImageView(getClass().getResource("/images/person_add_icon.png").toString());
         imv.setFitWidth(20);
         imv.setFitHeight(20);
         btnAgregar.setGraphic(imv);
         tlbMenu = new ToolBar(btnAgregar);
-        tbvClientes = new TableView<>();
         CreateTable();
         vBox = new VBox(tlbMenu,tbvClientes);
         escena = new Scene(vBox, 800, 600);
     }
 
     private void CreateTable() {
-
+        ClientesDAO objC = new ClientesDAO();
         TableColumn<ClientesDAO,String> tbcNomCte = new TableColumn<>("Nombre");
         tbcNomCte.setCellValueFactory(new PropertyValueFactory<>("nomCte"));
         TableColumn<ClientesDAO,String> tbcDireccion = new TableColumn<>("Dirección");
@@ -48,6 +49,7 @@ public class ListaClientes extends Stage {
         tbcTel.setCellValueFactory(new PropertyValueFactory<>("telCte"));
         TableColumn<ClientesDAO,String> tbcEmail = new TableColumn<>("Email");
         tbcEmail.setCellValueFactory(new PropertyValueFactory<>("emailCte"));
-
+        tbvClientes.getColumns().addAll(tbcNomCte,tbcDireccion,tbcTel,tbcEmail);
+        tbvClientes.setItems(objC.SELECT());
     }
 }

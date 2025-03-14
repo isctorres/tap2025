@@ -16,6 +16,7 @@ public class Celayork extends Stage {
     private Label[] lblRutas;
     private ProgressBar[] pgbRutas;
     private Scene escena;
+    private String[] strRutas = {"Ruta Pinos","Ruta Teneria","San Juan de la Vega","Monte Blanco","Ruta Laureles"};
 
     public  Celayork(){
         CrearUI();
@@ -25,11 +26,17 @@ public class Celayork extends Stage {
     }
 
     private void CrearUI() {
+        btnIniciar = new Button("Iniciar");
         pgbRutas = new ProgressBar[5];
         lblRutas = new Label[5];
         gdpCalles = new GridPane();
         for (int i = 0; i < pgbRutas.length; i++) {
-
+            lblRutas[i] = new Label(strRutas[i]);
+            pgbRutas[i] = new ProgressBar(0);
+            gdpCalles.add(lblRutas[i],0,i);
+            gdpCalles.add(pgbRutas[i],1,i);
         }
+        vBox = new VBox(gdpCalles,btnIniciar);
+        escena = new Scene(vBox, 300, 200);
     }
 }
